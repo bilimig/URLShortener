@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    
+    <div class="form-group">
+        <label for="original-url">Enter URL to Shorten:</label>
+        <input type="text" id="original-url" placeholder="https://example.com">
+        <button onclick="shortenURL()">Shorten URL</button>
+    </div>
+    
+    <div class="form-group">
+        <label for="short-url">Enter Short URL:</label>
+        <input type="text" id="short-url" placeholder="short-url">
+        <button onclick="getOriginalURL()">Get Original URL</button>
+    </div>
+    
+    <div id="output"></div>
+
+    <script>
+        async function shortenURL() {
+            const originalUrl = document.getElementById('original-url').value;
+            const response = await fetch('/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ original_url: originalUrl })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('output').innerText = 'Shortened URL: ' + data.short_url;
+            } else {
+                document.getElementById('output').innerText = 'Error shortening URL';
+            }
+        }
+
+        async function getOriginalURL() {
+            const shortUrl = document.getElementById('short-url').value;
+            const response = await fetch(`/${shortUrl}`, {
+                method: 'GET'
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('output').innerText = 'Original URL: ' + data.original_url;
+            } else {
+                document.getElementById('output').innerText = 'Error retrieving original URL';
+            }
+        }
+    </script>
+</body>
+</html>
