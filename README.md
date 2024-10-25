@@ -51,7 +51,10 @@ Aplikacja jest prostym systemem skracania URL, który wykorzystuje FastAPI jako 
 
 ## **Testowanie aplikacji**
 - Testy napisne w pytescie do uruchomienia trzeba wejść w kontener Celery Worker.
-- Użyć komendy: ``` pytest app/tests.py ```
+- Testy Api: ``` pytest app/api_tests.py ```
+- Testy jednostkowe: ``` pytest app/unit_tests.py ```
+- Niestety testy jednostkowe zwracają błąd z którym nie zdążyłem się uporać.
+- Błąd który jest zwracany odnosie się do niepoprawnego uzycia generatora sekcji zeby odseparowac baze danych.
 
 ## **Dodatkowe informacje**
 - Aplikacja wykorzystuje FastAPI do komunikacji z użytkownikiem.
