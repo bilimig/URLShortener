@@ -57,3 +57,4 @@ Aplikacja jest prostym systemem skracania URL, który wykorzystuje FastAPI jako 
 - Aplikacja wykorzystuje FastAPI do komunikacji z użytkownikiem.
 - Celery obsługuje zadania asynchroniczne takie jak tworzenie skróconych URL-i.
 - PostgreSQL pełni rolę głównej bazy danych, a Redis jest używany jako broker do Celery.
+- Dokumentacja Swager dostepna pod http://localhost:8000/docs
